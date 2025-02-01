@@ -1,0 +1,17 @@
+Genre
+Title
+year
+length
+rating
+Sci-fi
+Godzilla x Kong: The New Empire
+2024
+6.1
+Horror
+Megalodon
+2018
+2.8
+Action
+Spider-Man: No Way Home
+2021
+8.2
