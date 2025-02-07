@@ -1,17 +1,56 @@
-Genre
 Title
+Genre
 year
-length
 rating
-Sci-fi
 Godzilla x Kong: The New Empire
+Sci-fi
 2024
 6.1
-Horror
 Megalodon
+Horror
 2018
 2.8
-Action
 Spider-Man: No Way Home
+Action
 2021
 8.2
+Piece by Piece 
+Musical
+2024
+6.9
+Step Brothers
+Comedy
+2008
+6.9
+Sonic 3
+Action
+2024
+7
+The Maze Runner
+Action
+2014
+6.8
+9
+Fantasy
+2009
+7
+Ready Player One
+Sci-fi
+2018
+7.4
+Dawn of the Planet of the Apes
+Action
+2014
+7.6
+Jurasic World Dominion
+Sci-fi
+2022
+5.6
+Chronicle
+Sci-fi
+2012
+7
+Cloverfield
+Horror
+2008
+7
