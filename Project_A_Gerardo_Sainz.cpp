@@ -29,38 +29,6 @@ private:
 		capacity = newCapacity;
 }
 
-	int binarySearch(const string& key, const string& field) const {
-		int left = 0;
-		int right = size - 1;
-
-		while (left <= right) {
-			int mid = left + (right - left) / 2;
-			string midValue;
-
-			if (field == "title") {
-				midValue = movies[mid].title;
-			}
-			else if (field == "genre") {
-				midValue = movies[mid].genre;
-			}
-			else {
-				return -1; 
-			}
-
-			if (midValue == key) {
-				return mid; 
-			}
-			else if (midValue < key) {
-				left = mid + 1;
-			}
-			else {
-				right = mid - 1;
-			}
-		}
-
-		return -1;
-	}
-
 
 public:
 	MovieDatabase() : movies(new Movie[1]), capacity(1), size(0) {}
@@ -68,8 +36,6 @@ public:
 	~MovieDatabase() {
 		delete[] movies;
 	}
-
-
 
 void addMovie(const string& title, const string& genre, const int& year, const float& rating) {
 	if (size == capacity) {
@@ -83,7 +49,13 @@ void addMovie(const string& title, const string& genre, const int& year, const f
 }
 
 void removeMovie(const string& title) {
-	int index = binarySearch(title, "title"); 
+	int index = -1;
+	for (int i = 0; i < size; ++i) {
+		if (movies[i].title == title) {
+			index = i;
+			break;
+		}
+	}
 	if (index != -1) {
 		for (int j = index; j < size - 1; ++j) {
 			movies[j] = movies[j + 1];
@@ -94,20 +66,39 @@ void removeMovie(const string& title) {
 		cout << "Movie " << title << " not found. " << endl;
 			return;
 		}
-	cout << "Movie " << movies << " not found" << endl;
 	}
 
+void loadData(const string& filename) {
+	ifstream file(filename);
+	if (!file) {
+		cout << "Error opening file: " << filename << endl;
+		return;
+	}
 
+	string title;
+	string genre;
+	int year;
+	float rating;
+
+	while (getline(file, title) && getline(file, genre) && file >> year >> rating) {
+		file.ignore();
+		addMovie(title, genre, year, rating);
+	}
+	file.close();
+	cout << "Movies loaded successfully from " << filename << endl;
+}
 
 };
-int main()
-{	
+	int main() {
 	MovieDatabase mdb;
+	mdb.loadData("movieData.txt");
 	int userInput;
 	string title;
 	string genre;
 	int year;
 	float rating;
+	string filename;
+
 
 	do {
 		cout << "\nChoose from the options below : " << endl;
@@ -151,6 +142,7 @@ int main()
 			break;
 		case 5:
 			cout << "Here are all the movies: " << endl;
+			cout << "movieData.txt";
 			break;
 		case 6:
 			cout << "Enter movie you want to remove: " << endl;
@@ -158,8 +150,7 @@ int main()
 			mdb.removeMovie(title);
 			break;
 		case 7:
-			return;
-			break;
+			return 0;
 		default:
 			cout << "Invalid choice. Choose between 1 and 7." << endl;
 			break;
