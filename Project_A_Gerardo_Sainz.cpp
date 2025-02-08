@@ -46,6 +46,16 @@ void addMovie(const string& title, const string& genre, const int& year, const f
 	movies[size].year = year;
 	movies[size].rating = rating;
 	size++;
+
+	ofstream file("movieData.txt", ios::app);
+	if (file) {
+		file << title << "\n" << genre << "\n" << year << "\n" << rating << "\n";
+		file.close();
+		cout << "Movie added and saved successfully!" << endl;
+	}
+	else {
+		cout << "Error saving movie to file!" << endl;
+	}
 }
 
 void removeMovie(const string& title) {
@@ -62,11 +72,26 @@ void removeMovie(const string& title) {
 		}
 		size--;
 		cout << "Movie " << title << " removed successfully." << endl;
-	} else {
-		cout << "Movie " << title << " not found. " << endl;
-			return;
+
+		ofstream file("movieData.txt");
+		if (file) {
+			for (int i = 0; i < size; ++i) {
+				file << movies[i].title << "\n"
+					<< movies[i].genre << "\n"
+					<< movies[i].year << "\n"
+					<< movies[i].rating << "\n";
+			}
+			file.close();
+			cout << "File updated successfully." << endl;
+		}
+		else {
+			cout << "Error updating file after removal!" << endl;
 		}
 	}
+	else {
+		cout << "Movie " << title << " not found." << endl;
+	}
+}
 
 void loadData(const string& filename) {
 	ifstream file(filename);
