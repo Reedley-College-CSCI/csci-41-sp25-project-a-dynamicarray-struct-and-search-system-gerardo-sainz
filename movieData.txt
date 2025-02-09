@@ -1,4 +1,4 @@
-Godzilla x Kong: The New Empire
+Godzilla x Kong The New Empire
 Sci-fi
 2024
 6.1
@@ -6,11 +6,11 @@ Megalodon
 Horror
 2018
 2.8
-Spider-Man: No Way Home
+Spider-Man No Way Home
 Action
 2021
 8.2
-Piece by Piece
+Piece By Piece
 Musical
 2024
 6.9
@@ -30,7 +30,7 @@ Ready Player One
 Sci-fi
 2018
 7.4
-Dawn of the Planet of the Apes
+Dawn Of The Planet Of The Apes
 Action
 2014
 7.6
@@ -46,3 +46,79 @@ Cloverfield
 Horror
 2008
 7
+The Social Dilemma
+Documentary
+2020
+7.6
+Rebel Ridge
+Thriller
+2024
+6.8
+Murder Mystery 2
+Mystery
+2023
+5.7
+Moonfall
+Sci-fi
+2022
+5.2
+Extinction
+Action
+2018
+5.8
+The Shawshank Redemption
+Drama
+1994
+9.3
+Inception
+Sci-fi
+2010
+8.8
+The Dark Knight
+Action
+2008
+9
+The Grand Budapest Hotel
+Comedy
+2014
+8.1
+The Conjuring
+Horror
+2013
+7.5
+Parasite
+Thriller
+2019
+8.6
+The Notebook
+Romance
+2004
+7.8
+Toy Story
+Animation
+1995
+8.3
+Interstellar
+Adventure
+2014
+8.7
+Whiplash
+Music
+2014
+8.5
+Rocky
+Sports
+1976
+8.1
+The Social Network
+Biography
+2010
+7.8
+Get Out
+Horror
+2017
+7.8
+Arrival
+Thriller
+2016
+7.9
