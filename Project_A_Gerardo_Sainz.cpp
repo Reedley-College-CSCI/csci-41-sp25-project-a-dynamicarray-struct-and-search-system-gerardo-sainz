@@ -66,7 +66,23 @@ void searchMovieGenre(const string& genre) {
 			}
 		}
 		if (!found) {
-			cout << "No Movie genre found in database." << endl;
+			cout << "genre " << genre << " not found in database." << endl;
+		}
+}
+
+void searchMovieYear(const int& year) {
+	bool found = false;
+		for (int i = 0; i < size; ++i) {
+			if(movies[i].year == (year)) {
+				cout << "\nTitle: " << movies[i].title << endl;
+				cout << "Genre: " << movies[i].genre << endl;
+				cout << "Year: " << movies[i].year << endl;
+				cout << "Rating: " << movies[i].rating << endl;
+				found = true;
+			}
+		}
+		if (!found) {
+			cout << "No Movie from " << year << " found in database." << endl;
 		}
 }
 
@@ -208,6 +224,7 @@ void displayDatabase() {
 		case 3:
 			cout << "Enter a release year: ";
 			cin >> year;
+			mdb.searchMovieYear(year);
 			break;
 		case 4:
 			cout << "Enter the genre below: ";
