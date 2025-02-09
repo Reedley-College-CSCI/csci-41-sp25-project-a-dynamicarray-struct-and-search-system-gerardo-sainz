@@ -139,6 +139,12 @@ void loadData(const string& filename) {
 	cout << "Movies loaded successfully from " << filename << endl;
 }
 
+void displayDatabase() {
+	for(int i = 0; i < size; ++i){
+		cout << '\n' << "Title:" << movies[i].title << ", Genre:" << movies[i].genre << ", Year:" << movies[i].year << ", Rating:" << movies[i].rating << endl;
+	}
+}
+
 };
 	int main() {
 	MovieDatabase mdb;
@@ -193,7 +199,7 @@ void loadData(const string& filename) {
 			break;
 		case 5:
 			cout << "Here are all the movies in the database: " << endl;
-			cout << "movieData.txt";
+			mdb.displayDatabase();
 			break;
 		case 6:
 			cout << "Enter movie you want to remove: " << endl;
