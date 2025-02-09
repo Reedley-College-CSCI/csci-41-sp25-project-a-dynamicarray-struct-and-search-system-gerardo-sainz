@@ -54,6 +54,22 @@ void searchMovieTitle(const string& title) {
 		}
 	}
 
+void searchMovieGenre(const string& genre) {
+	bool found = false;
+		for (int i = 0; i < size; ++i) {
+			if(movies[i].genre == (genre)) {
+				cout << "\nTitle: " << movies[i].title << endl;
+				cout << "Genre: " << movies[i].genre << endl;
+				cout << "Year: " << movies[i].year << endl;
+				cout << "Rating: " << movies[i].rating << endl;
+				found = true;
+			}
+		}
+		if (!found) {
+			cout << "No Movie genre found in database." << endl;
+		}
+}
+
 void addMovie(const string& title, const string& genre, const int& year, const float& rating) {
 	if (size == capacity) {
 		resize(2 * capacity);
@@ -196,6 +212,7 @@ void displayDatabase() {
 		case 4:
 			cout << "Enter the genre below: ";
 			getline(cin, genre);
+			mdb.searchMovieGenre(genre);
 			break;
 		case 5:
 			cout << "Here are all the movies in the database: " << endl;
