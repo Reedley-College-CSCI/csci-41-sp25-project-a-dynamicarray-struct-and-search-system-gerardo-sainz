@@ -51,6 +51,7 @@ void searchMovieTitle(const string& title) {
 		}
 		if (!found) {
 			cout << "Movie not found in database." << endl;
+			cout << "Make sure first letter of each word is capitalized and not misspelled." << endl;
 		}
 	}
 
@@ -67,6 +68,7 @@ void searchMovieGenre(const string& genre) {
 		}
 		if (!found) {
 			cout << "genre " << genre << " not found in database." << endl;
+			cout << "Make sure first letter is capitalized and spelled correctly." << endl;
 		}
 }
 
@@ -139,6 +141,7 @@ void removeMovie(const string& title) {
 	}
 	else {
 		cout << "Movie " << title << " not found." << endl;
+		cout << "Make sure first letter of each word is capitalized and not misspelled." << endl;
 	}
 }
 
@@ -173,7 +176,7 @@ void loadData(const string& filename) {
 
 void displayDatabase() {
 	for(int i = 0; i < size; ++i){
-		cout << '\n' << "Title:" << movies[i].title << ", Genre:" << movies[i].genre << ", Year:" << movies[i].year << ", Rating:" << movies[i].rating << endl;
+		cout << "\nTitle: " << movies[i].title << " | Genre: " << movies[i].genre << " | Year: " << movies[i].year << " | Rating: " << movies[i].rating << endl;
 	}
 }
 
@@ -187,15 +190,16 @@ void displayDatabase() {
 	int year;
 	float rating;
 
+		cout << "\n------ Reedley's Movie Database ------" << endl;
 
 	do {
 		cout << "\nChoose from the options below : " << endl;
-		cout << "1. Add new movies" << endl;
-		cout << "2. Search by movie title" << endl;
-		cout << "3. Search by release year" << endl;
-		cout << "4. Search by genre" << endl;
-		cout << "5. Display all movies" << endl;
-		cout << "6. Remove a movie" << endl;
+		cout << "1. Search by Movie Title" << endl;
+		cout << "2. Search by Genre" << endl;
+		cout << "3. Search by Release Year" << endl;
+		cout << "4. Add New Movie" << endl;
+		cout << "5. Remove A Movie" << endl;
+		cout << "6. Display All Movies" << endl;
 		cout << "7. Exit" << endl;
 		cout << endl;
 		cout << "Enter your choice: ";
@@ -204,22 +208,14 @@ void displayDatabase() {
 
 		switch (userInput) {
 		case 1:
-			cout << "What movie would you like to add:" << endl;
-			cout << "Title: ";
-			getline(cin, title);
-			cout << "Genre: ";
-			getline(cin, genre);
-			cout << "Release Year: ";
-			cin >> year;
-			cout << "Rating: ";
-			cin >> rating;
-			cin.ignore();
-			mdb.addMovie(title, genre, year, rating);
-			break;
-		case 2:
 			cout << "Search the movie title: ";
 			getline(cin, title);
 			mdb.searchMovieTitle(title);
+			break;
+		case 2:
+			cout << "Enter the genre below: ";
+			getline(cin, genre);
+			mdb.searchMovieGenre(genre);
 			break;
 		case 3:
 			cout << "Enter a release year: ";
@@ -227,18 +223,26 @@ void displayDatabase() {
 			mdb.searchMovieYear(year);
 			break;
 		case 4:
-			cout << "Enter the genre below: ";
+			cout << "What movie would you like to add (capitalize first letter of each word):" << endl;
+			cout << "Title: ";
+			getline(cin, title);
+			cout << "Genre (only one genre): ";
 			getline(cin, genre);
-			mdb.searchMovieGenre(genre);
+			cout << "Release Year: ";
+			cin >> year;
+			cout << "Rating (0.0/10): ";
+			cin >> rating;
+			cin.ignore();
+			mdb.addMovie(title, genre, year, rating);
 			break;
 		case 5:
-			cout << "Here are all the movies in the database: " << endl;
-			mdb.displayDatabase();
-			break;
-		case 6:
 			cout << "Enter movie you want to remove: " << endl;
 			getline(cin, title);
 			mdb.removeMovie(title);
+			break;
+		case 6:
+			cout << "Here are all the movies in the database: " << endl;
+			mdb.displayDatabase(); 
 			break;
 		case 7:
 			return 0;
