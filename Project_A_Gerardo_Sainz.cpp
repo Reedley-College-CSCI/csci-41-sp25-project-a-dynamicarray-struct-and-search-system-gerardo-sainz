@@ -37,6 +37,23 @@ public:
 		delete[] movies;
 	}
 
+void searchMovieTitle(const string& title) {
+		bool found = false;
+		for (int i = 0; i < size; ++i) {
+			if(movies[i].title == (title)) {
+				cout << "\nTitle: " << movies[i].title << endl;
+				cout << "Genre: " << movies[i].genre << endl;
+				cout << "Year: " << movies[i].year << endl;
+				cout << "Rating: " << movies[i].rating << endl;
+				found = true;
+				break;
+			}
+		}
+		if (!found) {
+			cout << "Movie not found in database." << endl;
+		}
+	}
+
 void addMovie(const string& title, const string& genre, const int& year, const float& rating) {
 	if (size == capacity) {
 		resize(2 * capacity);
@@ -85,7 +102,7 @@ void removeMovie(const string& title) {
 			cout << "File updated successfully." << endl;
 		}
 		else {
-			cout << "Error updating file after removal!" << endl;
+			cout << "Error updating file after removal" << endl;
 		}
 	}
 	else {
@@ -100,6 +117,8 @@ void loadData(const string& filename) {
 		return;
 	}
 
+	size = 0;
+
 	string title;
 	string genre;
 	int year;
@@ -107,7 +126,14 @@ void loadData(const string& filename) {
 
 	while (getline(file, title) && getline(file, genre) && file >> year >> rating) {
 		file.ignore();
-		addMovie(title, genre, year, rating);
+		if (size == capacity) {
+			resize(2 * capacity);
+		}
+		movies[size].title = title;
+		movies[size].genre = genre;
+		movies[size].year = year;
+		movies[size].rating = rating;
+		size++;
 	}
 	file.close();
 	cout << "Movies loaded successfully from " << filename << endl;
@@ -122,7 +148,6 @@ void loadData(const string& filename) {
 	string genre;
 	int year;
 	float rating;
-	string filename;
 
 
 	do {
@@ -156,6 +181,7 @@ void loadData(const string& filename) {
 		case 2:
 			cout << "Search the movie title: ";
 			getline(cin, title);
+			mdb.searchMovieTitle(title);
 			break;
 		case 3:
 			cout << "Enter a release year: ";
@@ -166,7 +192,7 @@ void loadData(const string& filename) {
 			getline(cin, genre);
 			break;
 		case 5:
-			cout << "Here are all the movies: " << endl;
+			cout << "Here are all the movies in the database: " << endl;
 			cout << "movieData.txt";
 			break;
 		case 6:
