@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <windows.h>
 using namespace std;
 
 
@@ -39,6 +40,9 @@ public:
 
 void searchMovieTitle(const string& title) {
 		bool found = false;
+		
+		DWORD startTime = GetTickCount();
+
 		for (int i = 0; i < size; ++i) {
 			if(movies[i].title == (title)) {
 				cout << "\nTitle: " << movies[i].title << endl;
@@ -48,15 +52,26 @@ void searchMovieTitle(const string& title) {
 				found = true;
 				break;
 			}
+
 		}
+
+			DWORD endTime = GetTickCount();
+			DWORD searchTime = endTime - startTime;
+
+
 		if (!found) {
 			cout << "Movie not found in database." << endl;
 			cout << "Make sure first letter of each word is capitalized and not misspelled." << endl;
 		}
+
+		cout << "Search time: " << searchTime << " milliseconds" << endl;
 	}
 
 void searchMovieGenre(const string& genre) {
 	bool found = false;
+
+		DWORD startTime = GetTickCount();
+
 		for (int i = 0; i < size; ++i) {
 			if(movies[i].genre == (genre)) {
 				cout << "\nTitle: " << movies[i].title << endl;
@@ -66,14 +81,24 @@ void searchMovieGenre(const string& genre) {
 				found = true;
 			}
 		}
+
+		DWORD endTime = GetTickCount();
+		DWORD searchTime = endTime - startTime;
+
 		if (!found) {
 			cout << "genre " << genre << " not found in database." << endl;
 			cout << "Make sure first letter is capitalized and spelled correctly." << endl;
 		}
+
+		cout << "Search time: " << searchTime << " milliseconds" << endl;
 }
 
 void searchMovieYear(const int& year) {
 	bool found = false;
+
+	DWORD startTime = GetTickCount();
+
+
 		for (int i = 0; i < size; ++i) {
 			if(movies[i].year == (year)) {
 				cout << "\nTitle: " << movies[i].title << endl;
@@ -83,9 +108,15 @@ void searchMovieYear(const int& year) {
 				found = true;
 			}
 		}
+
+	DWORD endTime = GetTickCount();
+	DWORD searchTime = endTime - startTime;
+
 		if (!found) {
 			cout << "No Movie from " << year << " found in database." << endl;
 		}
+
+		cout << "Search time: " << searchTime << " milliseconds" << endl;
 }
 
 void addMovie(const string& title, const string& genre, const int& year, const float& rating) {
