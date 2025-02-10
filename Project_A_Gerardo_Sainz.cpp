@@ -4,7 +4,8 @@
 #include <windows.h>
 using namespace std;
 
-
+bool checkUserYear = false;
+bool checkUserRating = false;
 
 struct Movie
 {
@@ -167,7 +168,7 @@ void removeMovie(const string& title) {
 			cout << "File updated successfully." << endl;
 		}
 		else {
-			cout << "Error updating file after removal" << endl;
+			cout << "Error updating file after removal." << endl;
 		}
 	}
 	else {
@@ -234,8 +235,15 @@ void displayDatabase() {
 		cout << "7. Exit" << endl;
 		cout << endl;
 		cout << "Enter your choice: ";
-		cin >> userInput;
+		
+		if (!(cin >> userInput)) {
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "You must enter an integer." << endl;
+			continue;
+		}
 		cin.ignore();
+		
 
 		switch (userInput) {
 		case 1:
@@ -250,7 +258,13 @@ void displayDatabase() {
 			break;
 		case 3:
 			cout << "Enter a release year: ";
-			cin >> year;
+			if (!(cin >> year)) {
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "You must enter an integer." << endl;
+				continue;
+			}
+			cin.ignore();
 			mdb.searchMovieYear(year);
 			break;
 		case 4:
@@ -259,11 +273,28 @@ void displayDatabase() {
 			getline(cin, title);
 			cout << "Genre (only one genre): ";
 			getline(cin, genre);
-			cout << "Release Year: ";
-			cin >> year;
-			cout << "Rating (0.0/10): ";
-			cin >> rating;
-			cin.ignore();
+			do{
+				cout << "Release Year: ";
+				if (!(cin >> year)) {
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "You must enter an valid year." << endl;
+				} else {
+					checkUserYear = true;
+				}
+			} while(checkUserYear == false);
+				cin.ignore();
+			do{
+				cout << "Rating (0.0/10): ";
+				if (!(cin >> rating)) {
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "You must enter an valid rating." << endl;
+				} else {
+					checkUserRating = true;
+				}
+			} while(checkUserRating == false);
+				cin.ignore();
 			mdb.addMovie(title, genre, year, rating);
 			break;
 		case 5:
@@ -284,7 +315,6 @@ void displayDatabase() {
 
 
 	} while (userInput != 7);
-
 	
 	return 0;
 }
